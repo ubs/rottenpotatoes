@@ -10,8 +10,14 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.movie_ratings
 
 	#params
-	@ratings_selected = params[:ratings] || {}
-	@ratings_selected_keys = @ratings_selected.keys
+	if (params.has_key?(:ratings))
+		@ratings_selected = params[:ratings]
+		@ratings_selected_keys = @ratings_selected.keys
+	else
+		@ratings_selected = {}
+		@ratings_selected_keys = @all_ratings
+	end
+
 	@sort_column = params[:sort_by] || 'id';
 
 	#Execute Query

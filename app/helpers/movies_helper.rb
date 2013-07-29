@@ -10,12 +10,11 @@ module MoviesHelper
 	end
   end
 
+  def get_sort_link(sort_by, filter_hash)
+    movies_path(:sort_by => sort_by, :ratings => filter_hash)
+  end
+
   def get_check_box_state(ratings_selected, rating)
-    #if (ratings_selected.has_key?rating)
-    #  ratings_selected[rating][0]
-    #end
-    
-    ratings_selected.has_key?rating
-    #false
+	ratings_selected.include?rating
   end
 end
