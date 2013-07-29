@@ -3,7 +3,7 @@
 
 %br
 
-= form_tag movies_path(:sort_by => @sort_column), :method => :get, :id => 'ratings_form' do
+= form_tag movies_path, :method => :get, :id => 'ratings_form' do
   Include: 
   - @all_ratings.each do |rating|
     = rating
@@ -31,23 +31,10 @@
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie)
 
+%br
+
 = link_to 'Add new movie', new_movie_path
 
-
-%br
-
-%br
-
-#debug
-  - @ratings_selected.each do |rt|
-    %li= rt
-
-
-%br
-
-#debug
-  - @ratings_selected_keys.each do |rtv|
-    %li= rtv
 
 
 

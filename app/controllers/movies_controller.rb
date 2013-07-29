@@ -14,7 +14,13 @@ class MoviesController < ApplicationController
 	@ratings_selected_keys = @ratings_selected.keys
 	@sort_column = params[:sort_by] || 'id';
 
-	@movies = Movie.find(:all, :order => @sort_column)
+	#Execute Query
+	if (@ratings_selected_keys != nil)
+		@movies = Movie.find(:all, :conditions => ["rating IN (?)", @ratings_selected_keys], :order => @sort_column)
+	else
+		@movies = Movie.find(:all, :order => @sort_column)
+	end
+
 	#@movies = Movie.order("#{@sort_column} DESC")
   end
 
